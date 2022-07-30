@@ -77,6 +77,9 @@
 		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
 			theme = e.matches ? "dark" : "light";
 		});
+
+		document.documentElement.lang = navigator.language;
+		addEventListener("languagechange", window.location.reload);
 	});
 
 </script>
