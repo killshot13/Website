@@ -5,6 +5,7 @@
 	import { externalLink, TreeView } from "$lib";
 	import { ListItem, Tooltip } from "fluent-svelte";
 	import Navigation from "@fluentui/svg-icons/icons/navigation_24_regular.svg?raw";
+	import { _ } from "svelte-i18n";
 
 	export let items: NavbarItem[] = [];
 	export let buttons = [];
@@ -50,7 +51,7 @@
 					srcset="/branding/logo-light.svg"
 				>
 				<img
-					alt="Files logo"
+					alt={$_("navbar.logo")}
 					class="logo-image"
 					height="32"
 					src="/branding/logo-light.svg"
@@ -89,7 +90,7 @@
 	</nav>
 	<div class="buttons">
 		<Tooltip text="#supportukraine" placement="bottom" delay={200} offset={0}>
-			<span class="support-ukraine" aria-label="Ukraine flag in support of Ukraine and its people, #supportukraine"></span>
+			<span aria-label={$_("navbar.ukraine")} class="support-ukraine"></span>
 		</Tooltip>
 		{#if innerWidth > 648}
 			{#each buttons as { icon, href, label }}

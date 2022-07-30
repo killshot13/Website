@@ -5,6 +5,7 @@
 	import Github from "./icons/github.svg?raw";
 	import Twitter from "./icons/twitter.svg?raw";
 	import Discord from "./icons/discord.svg?raw";
+	import { _ } from "svelte-i18n";
 
 	const contributors = [
 		{
@@ -66,54 +67,54 @@
 				{@html Discord}
 			</IconButton>
 		</div>
-		<p>Copyright © 2021 - {new Date().getFullYear()}, The Files Authors</p>
+		<p>{$_("footer.copyright", { values: { year: new Date().getFullYear() } })}</p>
 		<a href="https://vercel.com/?utm_source=FilesCommunity&utm_campaign=oss" {...externalLink}>
 			<img src="/branding/vercel-banner.svg" alt="Powered by Vercel" />
 		</a>
 	</div>
 	<div class="column">
-		<p>Pages</p>
+		<p>{$_("footer.pages.title")}</p>
 		<Button variant="hyperlink" sveltekit:prefetch href="/">
-			Home
+			{$_("footer.pages.home")}
 		</Button>
 		<Button variant="hyperlink" sveltekit:prefetch href="/docs">
-			Documentation
+			{$_("footer.pages.docs")}
 		</Button>
 		<Button variant="hyperlink" sveltekit:prefetch href="/blog">
-			Blog
+			{$_("footer.pages.blog")}
 		</Button>
 	</div>
 	<div class="column">
-		<p>Contribute to Files</p>
+		<p>{$_("footer.contribute.title")}</p>
 		<Button variant="hyperlink" {...externalLink}
 		        href="https://github.com/{links.github.owner}/{links.github.repo}/issues/new"
 		>
-			Give Feedback
+			{$_("footer.contribute.feedback")}
 		</Button>
 
 		<Button variant="hyperlink" href="/docs/contributing/code-style">
-			Style Guide
+			{$_("footer.contribute.style")}
 		</Button>
 
 		<Button {...externalLink} href="https://crowdin.com/project/files-app" variant="hyperlink">
-			Translations
+			{$_("footer.contribute.translations")}
 		</Button>
 
-		<p>Contribute to this site</p>
+		<p>{$_("footer.site.title")}</p>
 		<Button variant="hyperlink" {...externalLink}
 		        href="https://github.com/{links.github.owner}/{links.github.siteRepo}/"
 		>
-			GitHub Repo
+			{$_("footer.site.repo")}
 		</Button>
 
 		<Button variant="hyperlink" {...externalLink}
 		        href="https://github.com/{links.github.owner}/{links.github.siteRepo}/issues/new"
 		>
-			Found a bug?
+			{$_("footer.site.bug")}
 		</Button>
 	</div>
 	<div class="column">
-		<p>Web Team</p>
+		<p>{$_("footer.team.title")}</p>
 		{#each contributors as contributor}
 			<Button variant="hyperlink" href={contributor.link} {...externalLink}>{contributor.name}</Button>
 		{/each}

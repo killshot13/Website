@@ -6,6 +6,7 @@
 
 	import FeatureShowcase from "./FeatureShowcase.svelte";
 	import { dev } from "$app/env";
+	import { _ } from "svelte-i18n";
 
 	let currentFeature = 0;
 
@@ -32,11 +33,8 @@
 	<div class="features-section-right">
 		<HeaderChip>Features</HeaderChip>
 		<h2>It already does that.</h2>
-		<p>
-			Cloud files integration? Tabs and multiple layouts? Rich file previews?
-			Files has it covered with robust features you expect from a modern file
-			manager.
-		</p>
+		<p>Cloud files integration? Tabs and multiple layouts? Rich file previews? Files has it covered with robust features
+			you expect from a modern file manager.</p>
 		<hr>
 		<div class="feature-cards-container">
 			{#each featureCards as feature, i}
@@ -47,10 +45,10 @@
 					}}
 					clickable
 					selected={currentFeature === i}
-					description={feature.description}
+					localizationId={feature.localizationId}
 					icon={feature.icon}
 				>
-					{feature.title}
+					{$_(`landing.features.cards.${feature.localizationId}.title`)}
 				</FeatureCard>
 			{/each}
 		</div>

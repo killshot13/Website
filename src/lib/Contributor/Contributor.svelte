@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { externalLink } from "$lib";
 	import { PersonPicture } from "fluent-svelte";
+	import { _ } from "svelte-i18n";
 
 	export let html_url: string = undefined;
 	export let avatar_url: string = undefined;
@@ -23,7 +24,7 @@
 		/>
 		<div class="info">
 			<h5>{login}</h5>
-			<span>{contributions} {contributions > 1 ? "contributions" : "contribution"}</span>
+			<span>{$_("landing.community.contributions", { values: { num: contributions } })}</span>
 		</div>
 	</a>
 {/if}

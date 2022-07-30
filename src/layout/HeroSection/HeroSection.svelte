@@ -6,6 +6,7 @@
 	import ArrowDownload from "@fluentui/svg-icons/icons/arrow_download_24_regular.svg?raw";
 	import ChevronDown from "@fluentui/svg-icons/icons/chevron_down_24_regular.svg?raw";
 	import Code from "@fluentui/svg-icons/icons/code_24_regular.svg?raw";
+	import { _ } from "svelte-i18n";
 
 	type DownloadSource = "Microsoft Store" | "Winget (CLI)" | "Sideload Package" | "Sideload Package (Preview)";
 	const downloadSources: DownloadSource[] = ["Microsoft Store", "Winget (CLI)", "Sideload Package", "Sideload Package (Preview)"];
@@ -62,8 +63,8 @@
 
 <PageSection id="hero-section">
 	<div class="hero-left">
-		<h1>Files</h1>
-		<p>A modern file explorer that pushes the boundaries of the platform.</p>
+		<h1>{$_("landing.hero.title")}</h1>
+		<p>{$_("landing.hero.description")}</p>
 		<div class="buttons-spacer">
 			<div class="split-button">
 				<Button
@@ -77,14 +78,18 @@
 				>
 					{@html ArrowDownload}
 					<div class="hero-button-inner">
-						<h5>Download Files</h5>
-						<span>{downloadSources.find(source => source === currentDownloadSource)}</span>
+						<h5>{$_("landing.hero.download.title")}</h5>
+						<span>
+							{$_(`landing.hero.download.${
+								downloadSources.find(source => source === currentDownloadSource)
+							}`)}
+						</span>
 					</div>
 				</Button>
 				<MenuFlyout bind:open={isDownloadDropdownOpen} placement="bottom">
 					<Button
-						aria-label="Choose download source"
-						title="Choose download source"
+						aria-label={$_("landing.hero.download.choose")}
+						title={$_("landing.hero.download.choose")}
 						variant="accent"
 					>
 						{@html ChevronDown}
@@ -92,7 +97,7 @@
 					<svelte:fragment slot="flyout">
 						{#each downloadSources as downloadSource}
 							<MenuFlyoutItem on:click={() => changeDownloadSource(downloadSource)}>
-								{downloadSource}
+								{$_(`landing.hero.download.${downloadSource}`)}
 							</MenuFlyoutItem>
 						{/each}
 					</svelte:fragment>
@@ -104,8 +109,8 @@
 			>
 				{@html Code}
 				<div class="hero-button-inner">
-					<h5>View GitHub</h5>
-					<span>Files is open source!</span>
+					<h5>{$_("landing.hero.github.title")}</h5>
+					<span>{$_("landing.hero.github.description")}</span>
 				</div>
 			</Button>
 		</div>
@@ -122,7 +127,7 @@
 					srcset="/screenshots/hero-light.png"
 				>
 				<img
-					alt="Files new tab screenshot"
+					alt={$_("landing.hero.newTab")}
 					height="768"
 					src="/screenshots/hero-light.png"
 					width="1024"
@@ -135,7 +140,7 @@
 
 <ContentDialog
 	bind:open={wingetDialogOpen}
-	title="Installing Files via winget"
+	title={$_("landing.hero.winget.title")}
 	size="max"
 >
 	To download and install Files using

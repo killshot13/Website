@@ -1,3 +1,14 @@
+<script context="module" lang="ts">
+	import type { Load } from "@sveltejs/kit";
+	import { waitLocale } from "svelte-i18n";
+	import i18n from "$data/i18n";
+
+	export const load: Load = () => {
+		i18n();
+		return waitLocale();
+	};
+</script>
+
 <script lang="ts">
 	import { dev } from "$app/env";
 	import { page } from "$app/stores";
@@ -8,24 +19,27 @@
 	import { docs } from "$data/docs";
 
 	import "fluent-svelte/theme.css";
+	import "../styles/_global.scss";
+	import "../styles/_markdown.scss";
 
 	import Chat from "@fluentui/svg-icons/icons/chat_24_regular.svg?raw";
 	import Code from "@fluentui/svg-icons/icons/code_24_regular.svg?raw";
 	import Home from "@fluentui/svg-icons/icons/home_24_regular.svg?raw";
 	import Book from "@fluentui/svg-icons/icons/book_24_regular.svg?raw";
 	import News from "@fluentui/svg-icons/icons/news_24_regular.svg?raw";
+	import { _ } from "svelte-i18n";
 	// import PaintBrush from "@fluentui/svg-icons/icons/paint_brush_24_regular.svg?raw";
 
 	const { github, discord } = links;
 
 	const navbarItems: NavbarItem[] = [
 		{
-			name: "Home",
+			name: $_("navbar.home"),
 			path: "/",
 			icon: Home
 		},
 		{
-			name: "Docs",
+			name: $_("navbar.docs"),
 			path: "/docs",
 			sidebarTree: docs,
 			icon: Book
@@ -36,7 +50,7 @@
 		//     icon: PaintBrush
 		// },
 		{
-			name: "Blog",
+			name: $_("navbar.blog"),
 			path: "/blog",
 			icon: News
 		}
@@ -44,12 +58,12 @@
 
 	const navbarButtons = [
 		{
-			label: "Discord",
+			label: $_("navbar.discord"),
 			href: `https://discord.gg/${ discord }`,
 			icon: Chat
 		},
 		{
-			label: "GitHub",
+			label: $_("navbar.github"),
 			href: `https://github.com/${ github.owner }/${ github.repo }`,
 			icon: Code
 		}
@@ -78,18 +92,10 @@
 		type="image/svg+xml"
 	>
 
-	<meta
-		content="A modern file explorer that pushes the boundaries of the platform."
-		name="description"
-	>
-	<meta
-		content="A modern file explorer that pushes the boundaries of the platform."
-		name="og:description"
-	>
-	<meta
-		content="A modern file explorer that pushes the boundaries of the platform."
-		name="twitter:description"
-	>
+	<meta content={$_("metadata.description")} name="description">
+	<meta content={$_("metadata.description")} name="og:description">
+	<meta content={$_("metadata.description")} name="twitter:description">
+
 	<meta
 		content="Files, File Explorer, Fluent Design, Microsoft, Windows, UWP"
 		name="keywords"
@@ -122,7 +128,3 @@
 <slot />
 <Footer />
 
-<style global lang="scss">
-	@use "src/styles/global";
-	@use "src/styles/markdown";
-</style>
