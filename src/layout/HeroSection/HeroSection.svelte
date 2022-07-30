@@ -143,15 +143,15 @@
 	title={$_("landing.hero.winget.title")}
 	size="max"
 >
-	To download and install Files using
-	<a href="https://github.com/microsoft/winget-cli" class="hyperlink" {...externalLink}>winget</a>,
-	paste the following command into a terminal of your choice:
+	{$_("landing.hero.winget.description")}
 	<TerminalCommand command="winget install -e 9NGHP3DX8HDX" />
 	<svelte:fragment slot="footer">
 		<Button on:click={copyWingetCommand} variant="accent">
-			{wingetCommandCopied ? "Copied!" : "Copy"}
+			{$_(`landing.hero.winget.${wingetCommandCopied ? "copied" : "copy"}`)}
 		</Button>
-		<Button on:click={() => (wingetDialogOpen = false)}>Close</Button>
+		<Button on:click={() => (wingetDialogOpen = false)}>
+			{$_("landing.hero.winget.close")}
+		</Button>
 	</svelte:fragment>
 </ContentDialog>
 

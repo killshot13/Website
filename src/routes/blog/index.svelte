@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { PageSection, HeaderChip, BlogCard, tilt, Metadata } from "$lib";
+	import { BlogCard, HeaderChip, Metadata, PageSection, tilt } from "$lib";
 	import { Button } from "fluent-svelte";
 	import type { Post } from ".";
+	import { _, date } from "svelte-i18n";
 
 	export let posts: Post[]
 
@@ -11,7 +12,7 @@
 </script>
 
 <svelte:head>
-	<Metadata title="Files • Blog" image="blog" />
+	<Metadata image="blog" title={$_("metadata.title.blog")} />
 </svelte:head>
 
 <svelte:window on:scroll={() => window.requestAnimationFrame(() => scrollY = window.scrollY )} />
@@ -37,12 +38,7 @@
 		</a>
 		<div class="main-post-info">
 			<HeaderChip>{
-				new Date(mainPost.metadata.date.replace(/-/g, "/").replace(/T.+/, ""))
-					.toLocaleDateString("en-US", {
-						year: "numeric",
-						day: "numeric",
-						month: "short"
-					})
+				$date(new Date(mainPost.metadata.date.replace(/-/g, "/").replace(/T.+/, "")))
 			}</HeaderChip>
 			<h2>{mainPost.metadata.title}</h2>
 			<p>{mainPost.metadata.description}</p>
@@ -50,7 +46,7 @@
 				href="/blog/{mainPost.path.replace(/\.[^/.]+$/, '')}/"
 				variant="accent"
 			>
-				Read More
+				{$_("blog.readMore")}
 			</Button>
 		</div>
 	</div>
@@ -61,7 +57,7 @@
 			{/each}
 		</div>
 	{:else}
-		<p>More posts coming soon!</p>
+		<p>{$_("blog.empty")}</p>
 	{/if}
 </PageSection>
 

@@ -1,8 +1,11 @@
 {
 	"metadata": {
 		"description": "A modern file explorer that pushes the boundaries of the platform.",
-		"home": {
-			"title": "Files • Home"
+		"title": {
+			"home": "Files • Home",
+			"docs": "Files • Docs{name}",
+			"blog": "Files • Blog",
+			"blogPost": "Files • Blog {title}"
 		}
 	},
 	"landing": {
@@ -23,7 +26,11 @@
 			},
 			"newTab": "Files new tab screenshot",
 			"winget": {
-				"title": "Installing Files via Winget"
+				"title": "Installing Files via Winget",
+				"description": "To download and install Files using winget, paste the following command into a terminal of your choice:",
+				"copy": "Copy",
+				"copied": "Copied!",
+				"close": "Close"
 			}
 		},
 		"design": {
@@ -65,6 +72,38 @@
 			"discussion": "Join the Discussion",
 			"contribute": "Become a Contributor",
 			"contributions": "{num} contributions"
+		},
+		"themes": {
+			"chip": "Themes",
+			"title": "Distinctly personal.",
+			"description": "Have it your way. Files features a fully customizable user interface, right down to the colors and materials. Try custom themes that are built into Files or dive right into the docs and create your own.",
+			"colorSwatch": "Select theme {num}",
+			"colors": {
+				"darkGrey": "Dark Grey • Light Blue",
+				"blueGrey": "Blue Grey • Neon Green",
+				"purple": "Purple",
+				"yellow": "Yellow • White",
+				"coolWhite": "Cool White • Dark Teal",
+				"skyBlue": "Sky Blue"
+			}
+		}
+	},
+	"docs": {
+		"edit": "Edit this page",
+		"search": {
+			"placeholder": "Search Documentation",
+			"noResults": "No results found"
+		}
+	},
+	"blog": {
+		"readMore": "Read More",
+		"empty": "More posts coming soon!",
+		"back": "Back to Blog",
+		"share": "Share",
+		"copyUrl": "Copy URL",
+		"copy": {
+			"twitter": "Twitter",
+			"facebook": "Facebook"
 		}
 	},
 	"navbar": {

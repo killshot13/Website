@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<Metadata title={$_("metadata.home.title")} />
+	<Metadata title={$_("metadata.title.home")} />
 </svelte:head>
 
 <HeroSection />

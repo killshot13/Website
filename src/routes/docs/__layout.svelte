@@ -43,6 +43,7 @@
 	import { links } from "$data/links";
 	import { externalLink, Metadata, TreeView } from "$lib";
 	import { Button, ListItem, TextBox } from "fluent-svelte";
+	import { _ } from "svelte-i18n";
 
 	export let pagePath = "";
 	export let docsPages: DocsMap[];
@@ -110,7 +111,7 @@
 </script>
 
 <svelte:head>
-	<Metadata title="Files • {pageTitle ? `Docs - ${pageTitle}` : 'Docs'}"
+	<Metadata title={$_("metadata.title.docs", { values: { name: pageTitle && `Docs - ${pageTitle}` }})}
 	          image="docs"
 	/>
 </svelte:head>
@@ -138,7 +139,7 @@
 								keepfocus: true
 							});
 					}}
-					placeholder="Search Documentation"
+					placeholder={$_("docs.search.placeholder")}
 					type="search"
 				/>
 				{#if autoSuggestVisible}
@@ -150,7 +151,7 @@
 								</ListItem>
 							{/each}
 						{:else}
-							<ListItem>No results found</ListItem>
+							<ListItem>{$_("docs.search.noResults")}</ListItem>
 						{/if}
 					</div>
 				{/if}
@@ -181,7 +182,7 @@
 								keepfocus: true
 							});
 					}}
-					placeholder="Search Documentation"
+					placeholder={$_("docs.search.placeholder")}
 					type="search"
 				/>
 				{#if autoSuggestVisible}
@@ -193,7 +194,7 @@
 								</ListItem>
 							{/each}
 						{:else}
-							<ListItem>No results found</ListItem>
+							<ListItem>{$_("docs.search.noResults")}</ListItem>
 						{/if}
 					</div>
 				{/if}
@@ -214,7 +215,7 @@
 								'/index'}.md"
 						        {...externalLink}
 						>
-							Edit this page
+							{$_("docs.edit")}
 						</Button>
 					</div>
 				</header>

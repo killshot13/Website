@@ -14,6 +14,7 @@
 	import ArrowLeft from "@fluentui/svg-icons/icons/arrow_left_24_regular.svg?raw";
 	import { IconButton, MenuFlyout, MenuFlyoutItem } from "fluent-svelte";
 	import type { Post } from "..";
+	import { _, date as dateFormat } from "svelte-i18n";
 
 	export let post: Post["metadata"];
 
@@ -21,7 +22,7 @@
 </script>
 
 <svelte:head>
-	<Metadata title="Files • {title}" image={thumbnail} />
+	<Metadata image={thumbnail} title={$_("metadata.title.blogPost", { values: { title }})} />
 </svelte:head>
 
 <section class="blog-post">
@@ -32,7 +33,7 @@
 				aria-label="Back to Blog"
 				class="back-button"
 				href="/blog"
-				title="Back to Blog"
+				title={$_("blog.back")}
 			>
 				{@html ArrowLeft}
 			</IconButton>
@@ -46,35 +47,30 @@
 				{...externalLink}>@{author}</a
 			>
 			<span>•</span>
-			{new Date(date.replace(/-/g, "/").replace(/T.+/, "")).toLocaleDateString(
-				"en-US",
-				{
-					year: "numeric",
-					day: "numeric",
-					month: "short"
-				}
-			)}
+			{$dateFormat(new Date(date.replace(/-/g, "/").replace(/T.+/, "")), {
+				year: "numeric", month: "short", day: "numeric"
+			})}
 			<MenuFlyout placement="bottom">
-				<IconButton size={20} aria-label="Share" class="share-button" title="Share">
+				<IconButton aria-label={$_("blog.share")} class="share-button" size={20} title="Share">
 					{@html Share}
 				</IconButton>
 				<svelte:fragment slot="flyout">
 					<MenuFlyoutItem
 						on:click={() => navigator.clipboard.writeText(window.location.href)}
 					>
-						Copy URL
+						{$_("blog.copyUrl")}
 					</MenuFlyoutItem>
 					<MenuFlyoutItem
 						href="https://twitter.com/intent/tweet?text={window.location.href}"
 						{...externalLink}
 					>
-						Twitter
+						{$_("blog.copy.twitter")}
 					</MenuFlyoutItem>
 					<MenuFlyoutItem
 						href="https://www.facebook.com/sharer/sharer.php?u={window.location.href}"
 						{...externalLink}
 					>
-						Facebook
+						{$_("blog.copy.facebook")}
 					</MenuFlyoutItem>
 				</svelte:fragment>
 			</MenuFlyout>
