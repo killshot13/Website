@@ -31,10 +31,9 @@
 		<FeatureShowcase feature={currentFeature} />
 	</div>
 	<div class="features-section-right">
-		<HeaderChip>Features</HeaderChip>
-		<h2>It already does that.</h2>
-		<p>Cloud files integration? Tabs and multiple layouts? Rich file previews? Files has it covered with robust features
-			you expect from a modern file manager.</p>
+		<HeaderChip>{$_("landing.features.chip")}</HeaderChip>
+		<h2>{$_("landing.features.title")}</h2>
+		<p>{$_("landing.features.description")}</p>
 		<hr>
 		<div class="feature-cards-container">
 			{#each featureCards as feature, i}

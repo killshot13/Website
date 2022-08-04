@@ -1,10 +1,17 @@
 <script context="module" lang="ts">
 	import type { Load } from "@sveltejs/kit";
-	import { waitLocale } from "svelte-i18n";
-	import i18n from "$data/i18n";
+	import { addMessages, getLocaleFromNavigator, init, waitLocale } from "svelte-i18n";
+	import { en, he } from "$data/i18n";
 
 	export const load: Load = () => {
-		i18n();
+		addMessages("en", en);
+		addMessages("he", he);
+
+		init({
+			fallbackLocale: "en",
+			initialLocale: getLocaleFromNavigator()
+		});
+
 		return waitLocale();
 	};
 </script>

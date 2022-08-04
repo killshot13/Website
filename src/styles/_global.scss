@@ -101,6 +101,14 @@ html {
 	font-size: 62.5%;
 }
 
+html[lang="he"] {
+	direction: rtl;
+
+	pre, code {
+		direction: ltr;
+	}
+}
+
 body {
 	@include flex($direction: column);
 	font-size: 1.4rem;
